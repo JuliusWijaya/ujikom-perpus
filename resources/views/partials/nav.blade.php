@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
         @auth
-            <a class="navbar-brand" href="/dashboad">SIPER</a>
+            <a class="navbar-brand" href="{{ url('dashboard') }}">SIPER</a>
         @else
             <a class="navbar-brand" href="/">SIPER</a>
         @endauth
@@ -27,11 +27,11 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('users.index') }}">Pengguna</a></li>
-                            <li><a class="dropdown-item" href="#">Anggota</a></li>
+                            <li><a class="dropdown-item" href="{{ route('anggotas.index') }}">Anggota</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Koleksi</a></li>
+                            <li><a class="dropdown-item" href="{{ route('koleksis.index') }}">Koleksi</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -40,7 +40,7 @@
                             {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/">Home</a></li>
+                            <li><a class="dropdown-item" href="{{ url('dashboard') }}">Dashboard</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

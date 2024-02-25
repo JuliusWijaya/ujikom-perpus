@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
+
 
 class AuthenticationController extends Controller
 {
@@ -38,7 +40,7 @@ class AuthenticationController extends Controller
     public function postLogin(Request $request): RedirectResponse
     {
         $request->validate([
-            'email'    => 'required',
+            'email'    => 'required|email',
             'password' => 'required',
         ]);
 
@@ -51,7 +53,7 @@ class AuthenticationController extends Controller
 
             session(['accessToken' => $token->plainTextToken]);
 
-            return redirect()->intended('dashboard')->withSuccess('You have Successfully loggedin with token');
+            return redirect()->intended('adm/dashboard')->withSuccess('You have Successfully loggedin with token');
         }
 
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
@@ -68,7 +70,7 @@ class AuthenticationController extends Controller
         $request->validate([
             'name'      => 'required|string',
             'email'     => 'required|email|unique:users',
-            'password'  => 'required|min:6',
+            'password'  => ['required', Password::min(8)->mixedCase()->symbols()],
             'hak_akses' => 'required|in:admin,anggota',
         ]);
 
@@ -86,13 +88,11 @@ class AuthenticationController extends Controller
      */
     public function dashboard()
     {
-        if (Auth::check()) {
-            $title = 'Dashboard';
-
-            return view('dashboard.index', ['title' => $title]);
+        if (!Auth::check()) {
+            return redirect("login")->withSuccess('Opps! You do not have access');
         }
 
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return view('dashboard.index', ['title' => 'Dashboard']);
     }
 
     /**

@@ -3,14 +3,13 @@
 @section('content')
     <main class="login-form">
         <div class="cotainer">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-5">
-                    <div class="card">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8 col-lg-5 mb-5">
+                    <div class="card mb-5">
                         <div class="card-header">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="text-center">{{ __('Tambah pengguna') }}</h5>
-                                </div>
+                            <div class="d-flex justify-content-between">
+                                <h5>{{ __('Tambah Pengguna') }}</h5>
+                                <a href="{{ route('users.index') }}" class="link">Kembali</a>
                             </div>
                         </div>
 
@@ -29,8 +28,9 @@
                                 </div>
 
                                 <div class="form-group row mt-3">
-                                    <label for="email_address" class="form-label">E-Mail
-                                        Address</label>
+                                    <label for="email_address" class="form-label">
+                                        E-Mail Address
+                                    </label>
                                     <div class="col">
                                         <input type="text" id="email_address" class="form-control" name="email"
                                             required autofocus>
@@ -55,8 +55,8 @@
                                     <div class="col">
                                         <select class="form-select" id="hak_akses" name="hak_akses" aria-label="hak_akses">
                                             <option selected>Choose</option>
-                                            <option value="admin" @selected(old('hak_akses'))>Admin</option>
-                                            <option value="anggota" @selected(old('hak_akses'))>Anggota</option>
+                                            <option value="admin" @selected(old('hak_akses') == 'admin')>Admin</option>
+                                            <option value="anggota" @selected(old('hak_akses') == 'anggota')>Anggota</option>
                                         </select>
                                         @if ($errors->has('hak_akses'))
                                             <span class="text-danger">{{ $errors->first('hak_akses') }}</span>

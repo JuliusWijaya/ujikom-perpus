@@ -20,8 +20,8 @@ return new class extends Migration
             $table->date('tg_lahir');
             $table->text('alamat');
             $table->char('no_hp', 13);
-            $table->string('jns_anggota');
-            $table->string('status')->default('active');
+            $table->char('jns_anggota', 20);
+            $table->char('status', 9)->default('active');
             $table->integer('jml_pinjam');
             $table->timestamps();
         });

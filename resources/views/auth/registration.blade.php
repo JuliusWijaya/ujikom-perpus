@@ -14,8 +14,8 @@
                             <div class="form-group row">
                                 <label for="name" class="form-label">Name</label>
                                 <div class="col">
-                                    <input type="text" id="name" class="form-control" name="name" required
-                                        autofocus>
+                                    <input type="text" id="name" class="form-control" name="name"
+                                        value="{{ old('name') }}" required autofocus>
                                     @if ($errors->has('name'))
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                     @endif
@@ -27,8 +27,8 @@
                                     Email
                                 </label>
                                 <div class="col">
-                                    <input type="email" id="email_address" class="form-control" name="email" required
-                                        autofocus>
+                                    <input type="email" id="email_address" class="form-control" name="email"
+                                        value="{{ old('email') }}" required autofocus>
                                     @if ($errors->has('email'))
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                     @endif
@@ -50,8 +50,8 @@
                                 <div class="col">
                                     <select class="form-select" id="hak_akses" name="hak_akses" aria-label="hak_akses">
                                         <option>-- Pilih --</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="anggota">Anggota</option>
+                                        <option value="admin" @selected(old('hak_akses'))>Admin</option>
+                                        <option value="anggota" @selected(old('hak_akses'))>Anggota</option>
                                     </select>
                                     @if ($errors->has('hak_akses'))
                                         <span class="text-danger">{{ $errors->first('hak_akses') }}</span>
