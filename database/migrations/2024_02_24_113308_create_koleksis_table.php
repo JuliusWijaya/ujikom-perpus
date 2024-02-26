@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->char('kd_koleksi', 15);
             $table->string('judul');
-            $table->string('jns_bahan_pustaka');
-            $table->string('jns_koleksi');
-            $table->string('jns_media');
+            $table->char('jns_bahan_pustaka', 30);
+            $table->char('jns_koleksi', 30);
+            $table->char('jns_media', 50);
             $table->string('pengarang');
             $table->string('penerbit', 150);
             $table->year('tahun');
             $table->string('cetakan', 150);
             $table->string('edisi', 120);
-            $table->string('status', 120)->default('active');
+            $table->char('status', 10)->default('active');
             $table->timestamps();
         });
     }

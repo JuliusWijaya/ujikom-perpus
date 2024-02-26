@@ -53,7 +53,7 @@ class AuthenticationController extends Controller
 
             session(['accessToken' => $token->plainTextToken]);
 
-            return redirect()->intended('adm/dashboard')->withSuccess('You have Successfully loggedin with token');
+            return redirect()->intended('dashboard')->withSuccess('You have Successfully loggedin with token');
         }
 
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');

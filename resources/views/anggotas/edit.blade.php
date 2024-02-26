@@ -5,10 +5,7 @@
         <div class="col col-md-10 col-lg-8">
             <div class="card">
                 <div class="card-header">
-                    <div class="d-flex justify-content-between">
-                        <h5>{{ __('Tambah Anggota') }}</h5>
-                        <a href="{{ route('anggotas.index') }}" class="link">Kembali</a>
-                    </div>
+                    <h5>{{ __('Edit Anggota') }}</h5>
                 </div>
 
                 <div class="card-body">
@@ -77,8 +74,8 @@
 
                         <div class="col-md-3">
                             <label for="no_hp" class="form-label">No HP</label>
-                            <input type="number" class="form-control" id="no_hp" name="no_hp"
-                                value="{{ old('no_hp', $anggota->no_hp) }}">
+                            <input type="tel" class="form-control" id="no_hp" name="no_hp"
+                                value="{{ old('no_hp', $anggota->no_hp) }}" minlength="12" maxlength="13">
                             @if ($errors->has('no_hp'))
                                 <span class="text-danger">{{ $errors->first('no_hp') }}</span>
                             @endif
@@ -120,15 +117,15 @@
                         <div class="col-md-3">
                             <label for="jml_pinjam" class="form-label">Jumlah Pinjaman</label>
                             <input type="number" class="form-control" id="jml_pinjam" name="jml_pinjam"
-                                value="{{ old('jml_pinjam', $anggota->jml_pinjam) }}">
+                                value="{{ old('jml_pinjam', $anggota->jml_pinjam) }}" max="5">
                             @if ($errors->has('jml_pinjam'))
                                 <span class="text-danger">{{ $errors->first('jml_pinjam') }}</span>
                             @endif
                         </div>
 
                         <div class="my-3">
-                            <button type="submit" class="btn btn-primary btn-sm me-2">Simpan</button>
-                            <button type="button" class="btn btn-secondary btn-sm">Reset</button>
+                            <a href="{{ route('anggotas.index') }}" class="link me-2">Kembali</a>
+                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                         </div>
                     </form>
                 </div>

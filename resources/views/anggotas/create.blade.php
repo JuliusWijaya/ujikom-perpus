@@ -76,8 +76,8 @@
 
                         <div class="col-md-3">
                             <label for="no_hp" class="form-label">No HP</label>
-                            <input type="number" class="form-control" id="no_hp" name="no_hp"
-                                value="{{ old('no_hp') }}">
+                            <input type="tel" class="form-control" id="no_hp" name="no_hp"
+                                value="{{ old('no_hp') }}" maxlength="13">
                             @if ($errors->has('no_hp'))
                                 <span class="text-danger">{{ $errors->first('no_hp') }}</span>
                             @endif
@@ -111,7 +111,7 @@
                         <div class="col-md-3">
                             <label for="jml_pinjam" class="form-label">Jumlah Pinjaman</label>
                             <input type="number" class="form-control" id="jml_pinjam" name="jml_pinjam"
-                                value="{{ old('no_hp') }}">
+                                value="{{ old('no_hp') }}" min="1" max="5">
                             @if ($errors->has('jml_pinjam'))
                                 <span class="text-danger">{{ $errors->first('jml_pinjam') }}</span>
                             @endif
@@ -140,8 +140,8 @@
         const jnsAnggota = document.getElementById('jns_anggota');
         const status = document.getElementById('status');
         const jmlPinjam = document.getElementById('jml_pinjam');
-
         const btnReset = document.querySelector('.btn-reset');
+
         btnReset.addEventListener('click', (e) => {
             kodeAnggota.value = '';
             namaAnggota.value = '';

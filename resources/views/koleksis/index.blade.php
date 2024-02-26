@@ -4,6 +4,12 @@
     <div class="row justify-content-center my-3">
         <div class="col-sm-12 col-md-9 col-lg-8">
             <div class="card">
+                @if (Session::has('message'))
+                    <div class="col">
+                        <x-alert />
+                    </div>
+                @endif
+
                 <div class="card-header">
                     <h5>{{ __('Koleksi Buku') }}</h5>
                 </div>
@@ -40,7 +46,7 @@
                                             </a>
                                             <form action="{{ route('koleksis.destroy', $row->id) }}" method="POST"
                                                 class="d-inline"
-                                                onsubmit="return confirm('Do you really want to delete {{ $row->name }}?');">
+                                                onsubmit="return confirm('Do you really want to delete {{ $row->judul }}?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">

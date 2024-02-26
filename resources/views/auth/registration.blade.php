@@ -8,6 +8,7 @@
                     <div class="card-header">
                         <h5 class="fw-bold">{{ __('Daftar akun') }}</h5>
                     </div>
+
                     <div class="card-body">
                         <form action="{{ route('register.post') }}" method="POST">
                             @csrf
@@ -28,7 +29,7 @@
                                 </label>
                                 <div class="col">
                                     <input type="email" id="email_address" class="form-control" name="email"
-                                        value="{{ old('email') }}" required autofocus>
+                                        value="{{ old('email') }}" required>
                                     @if ($errors->has('email'))
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                     @endif
@@ -38,7 +39,8 @@
                             <div class="form-group row mt-3">
                                 <label for="password" class="form-label">Password</label>
                                 <div class="col">
-                                    <input type="password" id="password" class="form-control" name="password" required>
+                                    <input type="password" id="password" class="form-control" name="password" required
+                                        minlength="6" maxlength="30">
                                     @if ($errors->has('password'))
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
                                     @endif
@@ -65,6 +67,7 @@
                                 </button>
                             </div>
                         </form>
+
                         <div class="my-2 text-center">
                             <span>
                                 {{ __('Sudah punya akun?') }}
