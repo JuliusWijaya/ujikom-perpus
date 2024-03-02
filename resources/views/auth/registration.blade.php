@@ -1,84 +1,81 @@
 @extends('layouts.main')
 
 @section('content')
-    <main class="login-form">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="fw-bold">{{ __('Daftar akun') }}</h5>
-                    </div>
+    <section class="section">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 col-lg-5 offset-lg-2">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h4>Daftar</h4>
+                        </div>
 
-                    <div class="card-body">
-                        <form action="{{ route('register.post') }}" method="POST">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="name" class="form-label">Name</label>
-                                <div class="col">
-                                    <input type="text" id="name" class="form-control" name="name"
-                                        value="{{ old('name') }}" required autofocus>
-                                    @if ($errors->has('name'))
-                                        <span class="text-danger">{{ $errors->first('name') }}</span>
-                                    @endif
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('register.post') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="name">Username</label>
+                                    <input id="name" type="text"
+                                        class="form-control @error('name') is-invalid @enderror" name="name" autofocus>
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                            </div>
 
-                            <div class="form-group row mt-3">
-                                <label for="email_address" class="form-label">
-                                    Email
-                                </label>
-                                <div class="col">
-                                    <input type="email" id="email_address" class="form-control" name="email"
-                                        value="{{ old('email') }}" required>
-                                    @if ($errors->has('email'))
-                                        <span class="text-danger">{{ $errors->first('email') }}</span>
-                                    @endif
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email">
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                            </div>
 
-                            <div class="form-group row mt-3">
-                                <label for="password" class="form-label">Password</label>
-                                <div class="col">
-                                    <input type="password" id="password" class="form-control" name="password" required
-                                        minlength="6" maxlength="30">
-                                    @if ($errors->has('password'))
-                                        <span class="text-danger">{{ $errors->first('password') }}</span>
-                                    @endif
+                                <div class="form-group">
+                                    <label for="password" class="d-block">Password</label>
+                                    <input id="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        data-indicator="pwindicator" name="password">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                            </div>
 
-                            <div class="form-group row mt-3">
-                                <label for="hak_akses" class="form-label">Hak Akses</label>
-                                <div class="col">
-                                    <select class="form-select" id="hak_akses" name="hak_akses" aria-label="hak_akses">
-                                        <option>-- Pilih --</option>
-                                        <option value="admin" @selected(old('hak_akses'))>Admin</option>
-                                        <option value="anggota" @selected(old('hak_akses'))>Anggota</option>
+                                <div class="form-group">
+                                    <label for="hak_akses" class="d-block">Hak Akses</label>
+                                    <select name="hak_akses" id="hak_akses"
+                                        class="form-control selectric @error('hak_akses') is-invalid @enderror">
+                                        <option value="">-- Pilih Hak Akses --</option>
+                                        <option value="admin">Administrator</option>
+                                        <option value="anggota">Anggota</option>
                                     </select>
-                                    @if ($errors->has('hak_akses'))
-                                        <span class="text-danger">{{ $errors->first('hak_akses') }}</span>
-                                    @endif
+                                    @error('hak_akses')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
-                            </div>
 
-                            <div class="col mt-3 p-2">
-                                <button type="submit" class="btn btn-primary form-control fw-semibold">
-                                    {{ __('Daftar') }}
-                                </button>
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                        Daftar
+                                    </button>
+                                </div>
+                            </form>
 
-                        <div class="my-2 text-center">
-                            <span>
-                                {{ __('Sudah punya akun?') }}
-                                <a href="{{ route('login') }}" class="fw-semibold text-decoration-none">
-                                    {{ __('Masuk') }}
-                                </a>
-                            </span>
+                            <div class="mt-3 text-muted text-center">
+                                Sudah punya akun? <a href="{{ route('login') }}">Masuk</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 @endsection

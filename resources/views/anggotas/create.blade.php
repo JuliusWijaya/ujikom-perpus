@@ -4,9 +4,9 @@
     <div class="row justify-content-center my-3">
         <div class="col col-md-10 col-lg-8">
             <div class="card">
-                <div class="card-header">
+                <div class="px-3 py-3">
                     <div class="d-flex justify-content-between">
-                        <h5>{{ __('Tambah Anggota') }}</h5>
+                        <h5>{{ __('Tambah Data') }}</h5>
                         <a href="{{ route('anggotas.index') }}" class="link">Kembali</a>
                     </div>
                 </div>
@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <form action="{{ route('anggotas.store') }}" method="POST" class="row g-3">
                         @csrf
-                        <div class="col-md-4">
+                        <div class="col-md-4 mb-3">
                             <label for="kd_anggota" class="form-label">Kode Anggota</label>
                             <input class="form-control @error('kd_anggota') is-invalid @enderror" type="text"
                                 id="kd_anggota" name="kd_anggota" autofocus autocomplete="off" required
@@ -24,7 +24,7 @@
                             @endif
                         </div>
 
-                        <div class="col-md-8">
+                        <div class="col-md-8 mb-3">
                             <label for="nm_anggota" class="form-label">Nama Lengkap</label>
                             <input class="form-control @error('nm_anggota') is-invalid @enderror" type="text"
                                 id="nm_anggota" name="nm_anggota" autocomplete="off" required
@@ -34,9 +34,9 @@
                             @endif
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-4 mb-3">
                             <label for="jk" class="form-label">Jenis Kelamin</label>
-                            <select id="jk" name="jk" class="form-select @error('jk') is-invalid @enderror"
+                            <select id="jk" name="jk" class="form-control @error('jk') is-invalid @enderror"
                                 required>
                                 <option selected>-- Pilih JK --</option>
                                 <option value="L" @selected(old('jk'))>Laki-laki</option>
@@ -47,7 +47,7 @@
                             @endif
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-3">
                             <label for="tg_lahir" class="form-label">Tanggal Lahir</label>
                             <input class="form-control @error('tg_lahir') is-invalid @enderror" type="date"
                                 id="tg_lahir" name="tg_lahir" value="{{ old('tg_lahir') }}">
@@ -56,7 +56,7 @@
                             @endif
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-5 mb-3">
                             <label for="tp_lahir" class="form-label">Tempat Lahir</label>
                             <input class="form-control @error('tp_lahir') is-invalid @enderror" type="text"
                                 id="tp_lahir" name="tp_lahir" value="{{ old('tp_lahir') }}">
@@ -65,7 +65,7 @@
                             @endif
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-12 mb-3">
                             <label for="alamat" class="form-label">Alamat</label>
                             <input type="text" class="form-control" id="alamat" name="alamat"
                                 placeholder="Masukan alamat lengkap" value="{{ old('alamat') }}">
@@ -74,7 +74,7 @@
                             @endif
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-3">
                             <label for="no_hp" class="form-label">No HP</label>
                             <input type="tel" class="form-control" id="no_hp" name="no_hp"
                                 value="{{ old('no_hp') }}" maxlength="13">
@@ -83,10 +83,10 @@
                             @endif
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-3">
                             <label for="jns_anggota" class="form-label">Jenis Anggota</label>
                             <select id="jns_anggota" name="jns_anggota"
-                                class="form-select @error('jns_anggota') is-invalid @enderror">
+                                class="form-control @error('jns_anggota') is-invalid @enderror">
                                 <option>-- Pilih Jenis --</option>
                                 <option value="member" @selected(old('jns_anggota') == 'member')>Member</option>
                                 <option value="non member" @selected(old('jns_anggota') == 'non member')>Non Member</option>
@@ -96,9 +96,10 @@
                             @endif
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-3">
                             <label for="status" class="form-label">Status</label>
-                            <select id="status" name="status" class="form-select @error('status') is-invalid @enderror">
+                            <select id="status" name="status"
+                                class="form-control @error('status') is-invalid @enderror">
                                 <option selected>-- Pilih Status --</option>
                                 <option value="active" @selected(old('status') == 'active')>Active</option>
                                 <option value="inactive" @selected(old('status') == 'inactive')>Inactive</option>
@@ -111,15 +112,15 @@
                         <div class="col-md-3">
                             <label for="jml_pinjam" class="form-label">Jumlah Pinjaman</label>
                             <input type="number" class="form-control" id="jml_pinjam" name="jml_pinjam"
-                                value="{{ old('no_hp') }}" min="1" max="5">
+                                value="{{ old('no_hp') }}" max="5">
                             @if ($errors->has('jml_pinjam'))
                                 <span class="text-danger">{{ $errors->first('jml_pinjam') }}</span>
                             @endif
                         </div>
 
-                        <div class="my-3">
-                            <button type="submit" class="btn btn-primary btn-sm me-2">Simpan</button>
-                            <button type="button" class="btn btn-secondary btn-sm btn-reset">Reset</button>
+                        <div class="col mt-3">
+                            <button type="submit" class="btn btn-primary btn-sm mx-2">Simpan</button>
+                            <button type="button" class="btn btn-danger btn-sm btn-reset">Reset</button>
                         </div>
                     </form>
                 </div>

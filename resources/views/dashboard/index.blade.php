@@ -1,21 +1,70 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+    <div class="section-header">
+        <h1>Hello {{ Auth::user()->name }}</h1>
+    </div>
 
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                    <i class="far fa-user"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Pengguna</h4>
+                    </div>
                     <div class="card-body">
-                        <h5>Hello, {{ auth()->user()->name }}</h5>
-                        @if (session('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
+                        {{ $users ?? '-' }}
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        You are Logged In
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-danger">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Koleksi</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ $koleksis ?? '-' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-warning">
+                    <i class="fab fa-nintendo-switch"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Peminjaman</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ $trxpjm ?? '-' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="card card-statistic-1">
+                <div class="card-icon bg-success">
+                    <i class="far fa-user"></i>
+                </div>
+                <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Pengembalian</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ $trxpgm ?? '-' }}
                     </div>
                 </div>
             </div>

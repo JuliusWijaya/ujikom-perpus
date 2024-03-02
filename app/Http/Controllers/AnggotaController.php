@@ -87,7 +87,6 @@ class AnggotaController extends Controller
             ->update($validate);
         Session::flash('message', 'Anggota ' . $anggota['nm_anggota'] . ' berhasil di update!');
         Session::flash('alert-class', 'alert-success');
-
         return redirect()->route('anggotas.index');
     }
 

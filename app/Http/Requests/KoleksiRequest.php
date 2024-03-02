@@ -22,11 +22,9 @@ class KoleksiRequest extends FormRequest
      */
     public function rules(): array
     {
-
-
         return [
-            'kd_koleksi'  => 'required|' . Rule::unique('koleksis')->ignore($this->koleksi->id),
-            'judul'       => 'required|string|' . Rule::unique('koleksis')->ignore($this->koleksi->id),
+            'kd_koleksi'  => ['required', 'max:30', Rule::unique('koleksis', 'kd_koleksi')->ignore($this->id)],
+            'judul'       => ['required', 'string', Rule::unique('koleksis', 'judul')->ignore($this->id)],
             'jns_bahan_pustaka' => 'required',
             'jns_koleksi' => 'required',
             'jns_media'   => 'required',

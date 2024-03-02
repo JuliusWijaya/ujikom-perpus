@@ -7,6 +7,9 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Koleksi;
+use App\Models\TransaksiKembali;
+use App\Models\TransaksiPinjam;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -17,7 +20,7 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthenticationController extends Controller
 {
-    public function index(): View
+    public function login(): View
     {
         return view('auth.login', ['title' => 'Masuk']);
     }
@@ -92,7 +95,13 @@ class AuthenticationController extends Controller
             return redirect("login")->withSuccess('Opps! You do not have access');
         }
 
-        return view('dashboard.index', ['title' => 'Dashboard']);
+        return view('dashboard.index', [
+            'title'     => 'Dashboard',
+            'users'     => User::count(),
+            'koleksis'  => Koleksi::count(),
+            'trxpjm'    => TransaksiPinjam::count(),
+            'trxpgm'    => TransaksiKembali::count(),
+        ]);
     }
 
     /**

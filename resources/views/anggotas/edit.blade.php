@@ -5,14 +5,14 @@
         <div class="col col-md-10 col-lg-8">
             <div class="card">
                 <div class="card-header">
-                    <h5>{{ __('Edit Anggota') }}</h5>
+                    <h5>{{ __('Edit Data') }}</h5>
                 </div>
 
                 <div class="card-body">
                     <form action="{{ route('anggotas.update', $anggota->id) }}" method="POST" class="row g-3">
                         @csrf
                         @method('PUT')
-                        <div class="col-md-4">
+                        <div class="col-md-4  mb-3">
                             <label for="kd_anggota" class="form-label">Kode Anggota</label>
                             <input class="form-control @error('kd_anggota') is-invalid @enderror" type="text"
                                 id="kd_anggota" name="kd_anggota" autofocus autocomplete="off" required
@@ -22,7 +22,7 @@
                             @endif
                         </div>
 
-                        <div class="col-md-8">
+                        <div class="col-md-8  mb-3">
                             <label for="nm_anggota" class="form-label">Nama Lengkap</label>
                             <input class="form-control @error('nm_anggota') is-invalid @enderror" type="text"
                                 id="nm_anggota" name="nm_anggota" autocomplete="off" required
@@ -32,9 +32,9 @@
                             @endif
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-4 mb-3">
                             <label for="jk" class="form-label">Jenis Kelamin</label>
-                            <select id="jk" name="jk" class="form-select @error('jk') is-invalid @enderror"
+                            <select id="jk" name="jk" class="form-control @error('jk') is-invalid @enderror"
                                 required>
                                 <option selected>-- Pilih JK --</option>
                                 <option value="L" @selected(old('jk', $anggota->jk) == 'L')>Laki-laki</option>
@@ -45,7 +45,7 @@
                             @endif
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-3">
                             <label for="tg_lahir" class="form-label">Tanggal Lahir</label>
                             <input class="form-control @error('tg_lahir') is-invalid @enderror" type="date"
                                 id="tg_lahir" name="tg_lahir" value="{{ old('tg_lahir', $anggota->tg_lahir) }}">
@@ -54,7 +54,7 @@
                             @endif
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-5 mb-3">
                             <label for="tp_lahir" class="form-label">Tempat Lahir</label>
                             <input class="form-control @error('tp_lahir') is-invalid @enderror" type="text"
                                 id="tp_lahir" name="tp_lahir" value="{{ old('tp_lahir', $anggota->tp_lahir) }}">
@@ -63,7 +63,7 @@
                             @endif
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-12 mb-3">
                             <label for="alamat" class="form-label">Alamat</label>
                             <input type="text" class="form-control" id="alamat" name="alamat"
                                 placeholder="Masukan alamat lengkap" value="{{ old('alamat', $anggota->alamat) }}">
@@ -84,7 +84,7 @@
                         <div class="col-md-3">
                             <label for="jns_anggota" class="form-label">Jenis Anggota</label>
                             <select id="jns_anggota" name="jns_anggota"
-                                class="form-select @error('jns_anggota') is-invalid @enderror">
+                                class="form-control @error('jns_anggota') is-invalid @enderror">
                                 <option selected>-- Pilih Jenis --</option>
                                 <option value="member" @selected(old('jns_anggota', $anggota->jns_anggota) == 'member')>
                                     Member
@@ -100,7 +100,8 @@
 
                         <div class="col-md-3">
                             <label for="status" class="form-label">Status</label>
-                            <select id="status" name="status" class="form-select @error('status') is-invalid @enderror">
+                            <select id="status" name="status"
+                                class="form-control @error('status') is-invalid @enderror">
                                 <option selected>-- Pilih Status --</option>
                                 <option value="active" @selected(old('status', $anggota->status) == 'active')>
                                     Active
@@ -123,8 +124,8 @@
                             @endif
                         </div>
 
-                        <div class="my-3">
-                            <a href="{{ route('anggotas.index') }}" class="link me-2">Kembali</a>
+                        <div class="col my-3">
+                            <a href="{{ route('anggotas.index') }}" class="link mx-2">Kembali</a>
                             <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                         </div>
                     </form>

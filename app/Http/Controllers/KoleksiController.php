@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\KoleksiRequest;
 use App\Models\Koleksi;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Requests\KoleksiRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 
 class KoleksiController extends Controller
@@ -65,9 +67,22 @@ class KoleksiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(KoleksiRequest $request, Koleksi $koleksi)
+    public function update(Request $request, Koleksi $koleksi)
     {
-        $validate = $request->validated();
+        $validate = Validator::make($request->all(), [
+            'kd_koleksi'  => ['required', 'max:30', Rule::unique('koleksis', 'kd_koleksi')->ignore($koleksi->id)],
+            'judul'       => ['required', 'string', Rule::unique('koleksis', 'judul')->ignore($koleksi->id)],
+            'jns_bahan_pustaka' => 'required',
+            'jns_koleksi' => 'required',
+            'jns_media'   => 'required',
+            'pengarang'   => 'required|string|max:120',
+            'penerbit'    => 'required|in:deepublish,bukunesia,grasindo,gramedia,erlangga',
+            'tahun'       => 'required|numeric',
+            'cetakan'     => 'required',
+            'edisi'       => 'required',
+            'status'      => 'nullable|in:active,inactive',
+        ])->validate();
+        // dd($validate);
         Koleksi::where('id', $koleksi->id)
             ->update($validate);
         Session::flash('message', 'Koleksi ' . $koleksi['judul'] . ' berhasil diupdate!');

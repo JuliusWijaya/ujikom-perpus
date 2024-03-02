@@ -59,7 +59,7 @@
 </head>
 
 <body>
-    @include('partials.nav')
+    @include('layouts.partials.nav')
 
     <div class="container">
         @yield('content')

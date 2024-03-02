@@ -1,67 +1,52 @@
 @extends('layouts.main')
 
 @section('content')
-    <main class="login-form">
-        <div class="row justify-content-center">
-            <div class="col col-md-6 col-lg-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>{{ __('Masuk') }}</h5>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('login.post') }}" method="POST">
-                            @csrf
-                            <div class="form-group row mt-3">
-                                <label for="email_address" class="form-label">
-                                    E-Mail Address
-                                </label>
-                                <div class="col">
-                                    <input type="email" id="email_address" class="form-control" name="email" required
-                                        autofocus>
-                                    @if ($errors->has('email'))
-                                        <span class="text-danger">{{ $errors->first('email') }}</span>
-                                    @endif
-                                </div>
-                            </div>
+    <section class="section">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 col-lg-5 offset-lg-2">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h4 class="text-center">Masuk</h4>
+                        </div>
 
-                            <div class="form-group row mt-3">
-                                <label for="password" class="form-label">Password</label>
-                                <div class="col">
-                                    <input type="password" id="password" class="form-control" name="password" required
-                                        minlength="6" maxlength="30">
-                                    @if ($errors->has('password'))
-                                        <span class="text-danger">{{ $errors->first('password') }}</span>
-                                    @endif
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('login.post') }}" class="needs-validation">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email" class="form-control" name="email" tabindex="1"
+                                        required autofocus>
                                 </div>
-                            </div>
 
-                            <div class="form-group row mt-3">
-                                <div class="col">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember"> Remember Me
-                                        </label>
+                                <div class="form-group">
+                                    <label for="email">Password</label>
+                                    <input id="password" type="password" class="form-control" name="password"
+                                        tabindex="2" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"
+                                            id="remember-me">
+                                        <label class="custom-control-label" for="remember-me">Remember Me</label>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="p-2">
-                                <button type="submit" class="btn btn-primary form-control fw-semibold">
-                                    Masuk
-                                </button>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                        Masuk
+                                    </button>
+                                </div>
+                            </form>
+
+                            <div class="mt-3 text-muted text-center">
+                                Belum punya akun? <a href="{{ route('register') }}">Daftar</a>
                             </div>
-                        </form>
-                        <div class="my-3 text-center">
-                            <span class="">
-                                {{ __(' Belum punya akun?') }}
-                                <a href="{{ route('register') }}" class="fw-semibold text-decoration-none">
-                                    {{ __('Daftar') }}
-                                </a>
-                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 @endsection
