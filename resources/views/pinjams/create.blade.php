@@ -18,7 +18,7 @@
                         <div class="col-4">
                             <label for="no_transaksi_pinjam" class="form-label">No Transaksi</label>
                             <input type="text" class="form-control" id="no_transaksi_pinjam" name="no_transaksi_pinjam"
-                                value="{{ old('no_transaksi_pinjam') }}">
+                                value="{{ old('no_transaksi_pinjam', $invoice) }}">
                         </div>
 
                         <div class="col-4">
@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="col mt-4">
-                            <button type="submit" class="btn btn-success me-3">Simpan</button>
+                            <button type="submit" class="btn btn-success mx-3">Simpan</button>
                             <a href="{{ route('pinjams.index') }}" class="btn btn-info">Kembali</a>
                         </div>
                     </form>

@@ -9,4 +9,9 @@ class Anggota extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function pinjam()
+    {
+        return $this->hasMany(TransaksiPinjam::class, 'kd_anggota', 'id');
+    }
 }

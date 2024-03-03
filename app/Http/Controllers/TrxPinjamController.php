@@ -16,7 +16,7 @@ class TrxPinjamController extends Controller
      */
     public function index()
     {
-        $pinjams = TransaksiPinjam::with(['anggota', 'pengguna'])->get();
+        $pinjams = TransaksiPinjam::with(['pengguna', 'anggota'])->where('id_pengguna', Auth::id())->get();
 
         return view('pinjams.index', [
             'title'     => 'Peminjaman',
@@ -32,10 +32,19 @@ class TrxPinjamController extends Controller
         $anggotas = Anggota::all();
         $koleksis = Koleksi::all();
 
+
+        // Mengambil data dari jumlah invoice yang ada dimodel
+        $counting = TransaksiPinjam::count();
+        // Cek jika data di model sama dengan kosong maka ditambah satu
+        // ($counting === 0) ? $counting++ : $counting;
+        $counter  = str_pad($counting, 3, '0', 0);
+        $invoice  = 'TRP' . date('dmy') . $counter;
+
         return view('pinjams.create', [
             'title'     => 'Peminjaman',
             'anggotas'  => $anggotas,
             'koleksis'  => $koleksis,
+            'invoice'   => $invoice,
         ]);
     }
 

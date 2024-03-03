@@ -62,6 +62,24 @@
     @include('layouts.partials.nav')
 
     <div class="container">
+        <div class="row mt-5">
+            <div class="col-lg-5 mt-5">
+                <p style="text-align: justify;">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, amet quia! Autem ex tempora
+                    ipsum fuga quo, ipsa vitae fugiat perferendis sequi, voluptas totam exercitationem neque inventore
+                    minima magni harum numquam distinctio eius iure! Ad laborum, accusantium optio fugit quas libero
+                    ipsam blanditiis nostrum laboriosam quasi! Debitis, ducimus. Vel, necessitatibus?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea reiciendis recusandae iusto voluptatibus
+                    tempora necessitatibus praesentium optio eligendi, id possimus atque. Quis dolor eius itaque quos
+                    voluptatem, aut doloremque corrupti officia non ea ex quae!
+                </p>
+            </div>
+
+            <div class="col-lg-5 offset-lg-2 mt-5">
+                <img src="{{ asset('Assets/img/1.jpg') }}" alt="img" class="w-100">
+            </div>
+        </div>
+
         @yield('content')
     </div>
 

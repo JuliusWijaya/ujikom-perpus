@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'name'      => $faker->name(),
                 'email'     => $faker->email(),
                 'password'  => bcrypt('rahasia'),
-                'hak_akses' => 'pengguna',
+                'hak_akses' => 'anggota',
                 'status'    => Arr::random(['active', 'inactive'])
             ];
         }

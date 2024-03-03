@@ -38,50 +38,61 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($kembalis as $row)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $row->no_transaksi_pinjam }}</td>
-                                        <td>{{ $row->no_transaksi_kembali }}</td>
-                                        <td>{{ $row->anggota->nm_anggota }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($row->tg_pinjam)->format('d-m-Y') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($row->tg_kembali)->format('d-m-Y') }}</td>
-                                        <td>{{ $row->kd_koleksi }}</td>
-                                        <td>{{ $row->judul }}</td>
-                                        <td>{{ $row->jns_bhn_pustaka }}</td>
-                                        <td>{{ Str::ucfirst($row->jns_koleksi) }}</td>
-                                        <td>{{ Str::ucfirst($row->jns_media) }}</td>
-                                        <td>{{ $row->denda }}</td>
-                                        <td>
-                                            <span
-                                                class="badge {{ $row->ket == 'belum' ? 'badge-danger' : 'badge-success' }}">
-                                                {{ Str::ucfirst($row->ket) }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-info" type="button" data-toggle="collapse"
-                                                data-target="#collapseExample{{ $row->id }}" aria-expanded="false"
-                                                aria-controls="collapseExample">
-                                                <i class="fa fa-arrow-alt-circle-down"></i>
-                                            </button>
+                                @if ($kembalis->count())
+                                    @foreach ($kembalis as $row)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $row->no_transaksi_pinjam }}</td>
+                                            <td>{{ $row->no_transaksi_kembali }}</td>
+                                            <td>{{ $row->pengguna->name }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($row->tg_pinjam)->format('d-m-Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($row->tg_kembali)->format('d-m-Y') }}</td>
+                                            <td>{{ $row->kd_koleksi }}</td>
+                                            <td>{{ $row->judul }}</td>
+                                            <td>{{ $row->jns_bhn_pustaka }}</td>
+                                            <td>{{ Str::ucfirst($row->jns_koleksi) }}</td>
+                                            <td>{{ Str::ucfirst($row->jns_media) }}</td>
+                                            <td>{{ $row->denda }}</td>
+                                            <td>
+                                                <span
+                                                    class="badge {{ $row->ket == 'belum' ? 'badge-danger' : 'badge-success' }}">
+                                                    {{ Str::ucfirst($row->ket) }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-info" type="button" data-toggle="collapse"
+                                                    data-target="#collapseExample{{ $row->id }}" aria-expanded="false"
+                                                    aria-controls="collapseExample">
+                                                    <i class="fa fa-arrow-alt-circle-down"></i>
+                                                </button>
 
-                                            <div class="collapse" id="collapseExample{{ $row->id }}">
-                                                <a href="{{ route('kembalis.edit', $row->id) }}"
-                                                    class="btn btn-success my-2">
-                                                    <i class="fa fa-pen"></i>
-                                                </a>
-                                                <form action="{{ route('kembalis.destroy', $row->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger" type="submit"
-                                                        onclick="return confirm('Are you sure?')">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </form>
+                                                <div class="collapse" id="collapseExample{{ $row->id }}">
+                                                    <a href="{{ route('kembalis.edit', $row->id) }}"
+                                                        class="btn btn-success my-2">
+                                                        <i class="fa fa-pen"></i>
+                                                    </a>
+                                                    <form action="{{ route('kembalis.destroy', $row->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger" type="submit"
+                                                            onclick="return confirm('Are you sure?')">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="14">
+                                            <div class="alert alert-warning text-center">
+                                                Data not found!
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

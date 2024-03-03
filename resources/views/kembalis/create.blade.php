@@ -24,7 +24,7 @@
                                 No Transaksi Kembali
                             </label>
                             <input type="text" id="no_transaksi_kembali" class="form-control" name="no_transaksi_kembali"
-                                required autofocus>
+                                value="{{ old('no_transaksi_kembali', $invoice) }}" required autofocus>
                             @if ($errors->has('no_transaksi_kembali'))
                                 <span class="text-danger">{{ $errors->first('no_transaksi_kembali') }}</span>
                             @endif
@@ -126,11 +126,6 @@
                         <div class="col-3 mb-3">
                             <label for="jns_media" class="form-label">Jenis Media</label>
                             <input type="text" id="jns_media" class="form-control" name="jns_media" required autofocus>
-                            {{-- <select class="form-control" id="jns_media" name="jns_media" aria-label="jns_media">
-                                <option value="">Choose</option>
-                                <option value="online">Online</option>
-                                <option value="offline">Offline</option>
-                            </select> --}}
                             @if ($errors->has('jns_media'))
                                 <span class="text-danger">{{ $errors->first('jns_media') }}</span>
                             @endif
@@ -183,7 +178,7 @@
                     url: "{{ url('kembalis') }}/" + result,
                     dataType: "json",
                     success: function(response) {
-                        console.log(response);
+                        // console.log(response);
                         var {
                             no_transaksi_pinjam,
                             kd_anggota,
@@ -213,7 +208,7 @@
             });
 
             $('#tg_kembali').on('change', function() {
-                var nil = $(this).val();
+                var nilai = $(this).val();
 
                 $.ajax({
                     type: "GET",
@@ -223,11 +218,10 @@
                     url: "{{ url('kembalis') }}/" + $('#no_transaksi_pinjam').val(),
                     dataType: "json",
                     success: function(response) {
-                        // console.log(response);
+                        // console.log(response.data);
                         var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-                        var kembali = new Date(nil);
-                        var tanggalBatas = new Date(response.tg_bts_kembali);
-                        console.log(tanggalBatas);
+                        var kembali = new Date(nilai);
+                        var tanggalBatas = new Date(response.data.tg_bts_kembali);
                         var selisih = Math.round(Math.round((kembali.getTime() - tanggalBatas
                             .getTime()) / (oneDay)));
 
@@ -236,7 +230,7 @@
                         } else if (selisih > 7) {
                             $('#denda').val(selisih * 500);
                         } else if (selisih > 1) {
-                            parseInt($('#denda').val("2000"));
+                            $('#denda').val("2000");
                         }
                         // console.log(selisih);
                     },

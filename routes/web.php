@@ -23,10 +23,16 @@ Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout'
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [AuthenticationController::class, 'dashboard']);
-    Route::resource('users', UserController::class);
-    Route::resource('anggotas', AnggotaController::class);
-    Route::resource('koleksis', KoleksiController::class);
-    Route::resource('pinjams', TrxPinjamController::class);
-    Route::resource('kembalis', TrxKembaliController::class);
-    Route::resource('laporans', LaporanController::class);
+
+    Route::group(['middleware' => 'check.role:admin'], function () {
+        Route::resource('users', UserController::class);
+        Route::resource('anggotas', AnggotaController::class);
+        Route::resource('koleksis', KoleksiController::class);
+        Route::resource('laporans', LaporanController::class);
+    });
+
+    Route::group(['middleware' => 'check.role:anggota'], function () {
+        Route::resource('pinjams', TrxPinjamController::class);
+        Route::resource('kembalis', TrxKembaliController::class);
+    });
 });

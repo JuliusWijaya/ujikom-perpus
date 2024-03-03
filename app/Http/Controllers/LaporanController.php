@@ -34,10 +34,15 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        $data = TransaksiKembali::with(['anggota', 'pengguna'])->whereBetween('tg_pinjam', [$request->tg_awal, $request->tg_akhir])->get()->toArray();
         $title = 'Laporan';
-        // return view('laporans/report', compact('data', 'title'));
-        $pdf = PDF::loadView('laporans.report', compact('data', 'title'));
+
+        $data = TransaksiKembali::with(['anggota', 'pengguna'])
+            ->whereBetween('tg_pinjam', [$request->tg_awal, $request->tg_akhir])
+            ->get()
+            ->toArray();
+
+        $pdf = PDF::loadView('laporans.report', compact('data', 'title'))->setPaper('A4', 'landscape');
+
         return $pdf->stream('report.pdf');
     }
 

@@ -15,31 +15,13 @@
 <body>
     <h5 class="text-center">{{ __('Laporan') }}</h5>
     <hr>
-    {{-- <div class="d-flex flex-column">
-        @foreach ($data as $row)
-            <p>
-                No Transaksi Pinjam :
-                <span>{{ $row['no_transaksi_pinjam'] }}</span>
-            </p>
-            <p>
-                No Transaksi Kembali :
-                <span>
-                    {{ $row['no_transaksi_kembali'] }}
-                </span>
-            </p>
-            <p>
-                Pengguna :
-                <span>
-                    {{ $row['pengguna']['name'] }}
-                </span>
-            </p>
-        @endforeach
-    </div> --}}
 
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th scope="col">No</th>
+                <th scope="col">Trs Pinjam</th>
+                <th scope="col">Trs Kembali</th>
                 <th scope="col">Tgl Pinjam</th>
                 <th scope="col">Tgl Kembali</th>
                 <th scope="col">Nm Anggota</th>
@@ -54,6 +36,8 @@
                     <?php $no++; ?>
                     <tr>
                         <th scope="row">{{ $no }}</th>
+                        <td scope="row">{{ $row['no_transaksi_pinjam'] }}</td>
+                        <td scope="row">{{ $row['no_transaksi_kembali'] }}</td>
                         <td>{{ \Carbon\Carbon::parse($row['tg_pinjam'])->format('d/m/Y') }}</td>
                         <td>{{ \Carbon\Carbon::parse($row['tg_kembali'])->format('d/m/Y') }}</td>
                         <td>{{ $row['anggota']['nm_anggota'] }}</td>

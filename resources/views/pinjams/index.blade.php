@@ -24,7 +24,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                {{-- <th>NO</th> --}}
+                                <th>NO</th>
                                 <th>TRS Pinjam</th>
                                 <th>Nama Anggota</th>
                                 <th>Tanggal Pinjam</th>
@@ -43,9 +43,9 @@
                             @if ($pinjams->count())
                                 @foreach ($pinjams as $item)
                                     <tr>
-                                        {{-- <td>{{ $loop->iteration }}</td> --}}
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->no_transaksi_pinjam }}</td>
-                                        <td>{{ $item->anggota->nm_anggota }}</td>
+                                        <td>{{ $item->pengguna->name }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->tg_pinjam)->format('d-m-Y') }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->tg_bts_kembali)->format('d-m-Y') }}</td>
                                         <td>{{ $item->kd_koleksi }}</td>

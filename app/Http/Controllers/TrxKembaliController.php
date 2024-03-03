@@ -17,7 +17,7 @@ class TrxKembaliController extends Controller
      */
     public function index()
     {
-        $kembalis = TransaksiKembali::all();
+        $kembalis = TransaksiKembali::with('anggota')->where('id_pengguna', Auth::id())->get();
 
         return view('kembalis.index', [
             'title'     => "Pengembalian",
@@ -33,12 +33,17 @@ class TrxKembaliController extends Controller
         $pinjams = TransaksiPinjam::all();
         $anggotas = Anggota::all();
         $koleksis = Koleksi::All();
+        // Mengambil data dari jumlah invoice yang ada dimodel
+        $counting = TransaksiKembali::count();
+        $counter  = str_pad($counting, 3, '0', 0);
+        $invoice  = 'TRP' . date('dmy') . $counter;
 
         return view('kembalis.create', [
             'title'     => "Pengembalian",
             'pinjams'   => $pinjams,
             'anggotas'  => $anggotas,
             'koleksis'  => $koleksis,
+            'invoice'   => $invoice,
         ]);
     }
 

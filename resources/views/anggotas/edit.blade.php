@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row justify-content-center my-3">
-        <div class="col col-md-10 col-lg-8">
+        <div class="col col-md-10 col-lg-12">
             <div class="card">
                 <div class="card-header">
                     <h5>{{ __('Edit Data') }}</h5>
@@ -125,8 +125,8 @@
                         </div>
 
                         <div class="col my-3">
-                            <a href="{{ route('anggotas.index') }}" class="link mx-2">Kembali</a>
                             <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                            <a href="{{ route('anggotas.index') }}" class="link mx-3">Kembali</a>
                         </div>
                     </form>
                 </div>
