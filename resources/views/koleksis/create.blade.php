@@ -58,18 +58,9 @@
                             <select id="jns_koleksi" name="jns_koleksi"
                                 class="form-control @error('jns_koleksi') is-invalid @enderror" required>
                                 <option selected>-- Jenis Koleksi --</option>
-                                <option value="buku" @selected(old('jns_koleksi') == 'buku')>
-                                    Buku/Monograf
-                                </option>
-                                <option value="referensi" @selected(old('jns_koleksi') == 'referensi')>
-                                    Referensi
-                                </option>
-                                <option value="local content" @selected(old('jns_koleksi') == 'local content')>
-                                    Local Content
-                                </option>
-                                <option value="digital" @selected(old('jns_koleksi') == 'digital')>
-                                    Digital
-                                </option>
+                                <option value="buku" @selected(old('jns_koleksi') == 'buku')>Buku</option>
+                                <option value="novel" @selected(old('jns_koleksi') == 'novel')>Penelitian</option>
+                                <option value="artikel" @selected(old('jns_koleksi') == 'artikel')>Artikel</option>
                             </select>
 
                             @if ($errors->has('jns_koleksi'))

@@ -92,7 +92,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="5">
+                                        <td colspan="13">
                                             <div class="alert alert-warning text-center" role="alert">
                                                 Data koleksi tidak ditemukan!
                                             </div>

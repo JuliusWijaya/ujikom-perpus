@@ -9,6 +9,8 @@ use App\Models\TransaksiPinjam;
 use App\Models\TransaksiKembali;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
 
 class TrxKembaliController extends Controller
 {
@@ -33,7 +35,9 @@ class TrxKembaliController extends Controller
         $pinjams = TransaksiPinjam::all();
         $anggotas = Anggota::all();
         $koleksis = Koleksi::All();
-        // Mengambil data dari jumlah invoice yang ada dimodel
+
+        // Mengambil data dari jumlah invoice yang ada dimodel TransaksiKembali
+        // Hitung jumlah record yang ada dimodel
         $counting = TransaksiKembali::count();
         $counter  = str_pad($counting, 3, '0', 0);
         $invoice  = 'TRP' . date('dmy') . $counter;
@@ -68,11 +72,26 @@ class TrxKembaliController extends Controller
         ]);
 
         $validate['id_pengguna'] = Auth::id();
-        TransaksiKembali::create($validate);
+
+        try {
+            DB::beginTransaction();
+
+            TransaksiKembali::create($validate);
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            //throw $th;
+            DB::rollBack();
+
+            Session::flash('message', 'Transaksi kembali gagal disimpan!');
+            Session::flash('alert-class', 'alert-warning');
+
+            return redirect()->route('kembalis.index');
+        }
+
 
         Session::flash('message', 'Transaksi kembali berhasil disimpan!');
         Session::flash('alert-class', 'alert-success');
-
         return redirect()->route('kembalis.index');
     }
 

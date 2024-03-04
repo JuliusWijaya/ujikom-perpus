@@ -16,7 +16,8 @@
                                 <div class="form-group">
                                     <label for="name">Username</label>
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name" autofocus>
+                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" autofocus>
                                     @error('name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -27,7 +28,8 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email">
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}">
                                     @error('email')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -52,8 +54,8 @@
                                     <select name="hak_akses" id="hak_akses"
                                         class="form-control selectric @error('hak_akses') is-invalid @enderror">
                                         <option value="">-- Pilih Hak Akses --</option>
-                                        <option value="admin">Administrator</option>
-                                        <option value="anggota">Anggota</option>
+                                        <option value="admin" @selected(old('hak_akses') == 'admin')>Administrator</option>
+                                        <option value="anggota" @selected(old('hak_akses') == 'anggota')>Anggota</option>
                                     </select>
                                     @error('hak_akses')
                                         <div class="invalid-feedback">

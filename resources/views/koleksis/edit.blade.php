@@ -60,19 +60,13 @@
                                 class="form-control @error('jns_koleksi') is-invalid @enderror" required>
                                 <option selected>-- Jenis Koleksi --</option>
                                 <option value="buku" @selected(old('jns_koleksi', $koleksi->jns_koleksi) == 'buku')>
-                                    Buku/Monograf
+                                    Buku
                                 </option>
-                                <option value="referensi" @selected(old('jns_koleksi', $koleksi->jns_koleksi) == 'referensi')>
-                                    Referensi
+                                <option value="novel" @selected(old('jns_koleksi', $koleksi->jns_koleksi) == 'novel')>
+                                    Penelitian
                                 </option>
-                                <option value="local content" @selected(old('jns_koleksi', $koleksi->jns_koleksi) == 'local content')>
-                                    Local Content
-                                </option>
-                                <option value="serial" @selected(old('jns_koleksi', $koleksi->jns_koleksi) == 'serial')>
-                                    Serial
-                                </option>
-                                <option value="digital" @selected(old('jns_koleksi', $koleksi->jns_koleksi) == 'digital')>
-                                    Digital
+                                <option value="artikel" @selected(old('jns_koleksi', $koleksi->jns_koleksi) == 'artikel')>
+                                    Artikel
                                 </option>
                             </select>
 

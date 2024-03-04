@@ -114,10 +114,11 @@
                             <label for="jns_koleksi" class="form-label">Jenis Koleksi</label>
                             <select class="form-control" id="jns_koleksi" name="jns_koleksi" aria-label="jns_koleksi">
                                 <option>Choose</option>
-                                <option value="buku">Buku</option>
-                                <option value="novel">Penelitian</option>
-                                <option value="artikel">Artikel</option>
+                                <option value="buku" @selected(old('jns_koleksi') == 'buku')>Buku</option>
+                                <option value="novel" @selected(old('jns_koleksi') == 'novel')>Penelitian</option>
+                                <option value="artikel" @selected(old('jns_koleksi') == 'artikel')>Artikel</option>
                             </select>
+
                             @if ($errors->has('jns_koleksi'))
                                 <span class="text-danger">{{ $errors->first('jns_koleksi') }}</span>
                             @endif
@@ -239,38 +240,6 @@
                     }
                 });
             });
-
         })
-
-
-        // function hitungDenda(tanggalKembali) {
-
-        //     $.ajax({
-        //         type: "GET",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         url: "{{ url('kembalis') }}/" + $('#no_transaksi_pinjam').val(),
-        //         success: function(response) {
-        //             var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-        //             var kembali = new Date(tanggalKembali);
-        //             var tanggalBatas = new Date(response.tg_bts_kembali);
-        //             var selisih = Math.round(Math.round((kembali.getTime() - tanggalBatas.getTime()) / (
-        //                 oneDay)));
-
-        //             if (selisih > 30) {
-        //                 $('#denda').val(selisih * 1000);
-        //             } else if (selisih > 7) {
-        //                 $('#denda').val(selisih * 500);
-        //             } else if (selisih > 1) {
-        //                 $('#denda').val("2000");
-        //             }
-        //             console.log(selisih);
-        //         },
-        //         error: function(err) {
-        //             console.log(err);
-        //         }
-        //     });
-        // }
     </script>
 @endpush
